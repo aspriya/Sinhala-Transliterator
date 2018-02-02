@@ -2,7 +2,12 @@
 
 from tkinter import *
 
+vowel_list = [u"අ", u"ආ", u"ඇ", u"ඈ", u"ඉ", u"ඊ", u"උ", u"ඌ", u"ඍ", u"ඎ", u"ඏ", u"ඐ", u"එ", u"ඒ", u"ඓ", u"ඔ", u"ඕ", u"ඖ"]
+sripali_list = [u"ං",u"ඃ",u"්",u"ා",u"ැ",u"ෑ",u"ි",u"ී",u"ු",u"ූ",u"ෘ",u"ෙ",u"ේ",u"ෛ",u"ො",u"ෝ",u"ෞ",u"ෟ",u"ෲ",u"ෳ"]
+big_list = vowel_list + sripali_list
+
 class SinhalaTransliterator(Frame):
+
 
 	def __init__(self, master):
 		#initializing the frame
@@ -38,10 +43,57 @@ class SinhalaTransliterator(Frame):
 		
 	def transliterate(self):
 		sin_text = self.sinhala.get(0.0, END)
-		sin_text = self.convert_to_phoneme(sin_text)	
-		self.singlish.delete(0.0, END)
-		self.singlish.insert(0.0, sin_text)
+		
+		#process the sinhala uncode string
+		print(type(sin_text))
+		sin_text_list = list(sin_text)
+		print("sinhala text list actually as in unicode :",sin_text_list)
+		print("sinhala text list length", len(sin_text_list))
 
+		# sin_text_len_modified = self.length_modification(sin_text)
+		# print("from length modification :", sin_text_len_modified)
+		
+		#call convert_to_phoneme function and get the halfly transliterated string
+		mapped_text_list = self.convert_to_phoneme(sin_text)	
+
+
+		print("mapped text list: ",mapped_text_list)
+		print("mapped text list len :", len(mapped_text_list))
+
+		a_insearted_list = self.insert_a(sin_text_list, mapped_text_list)
+
+		
+		self.singlish.delete(0.0, END)
+		self.singlish.insert(0.0, "".join(a_insearted_list))
+
+
+	
+	def insert_a(self, sin_text_list, mapped_text_list):
+		a_inserted_list = []
+		
+
+		for i, letter in enumerate(mapped_text_list):
+			a_inserted_list.append(letter)
+
+			print(i, ": ", letter, " -> ", sin_text_list[i])
+			
+			# rule 1 : dont insert /a/ after a wovel phoneme representative
+			if sin_text_list[i] in big_list:	
+				continue
+			
+			# rule 2 : don't insert /a/ after phoneme representatives of special unicode symbols in sripali_list.
+			elif sin_text_list[i+1] in sripali_list:
+				continue
+			
+			# handdle spaces
+			elif letter == ' ':
+				continue
+
+			# rule 3 : after other not filtered phoneme symbols, append /a/
+			else:
+				a_inserted_list.append('a')
+
+		return a_inserted_list
 
 	def convert_to_phoneme(self, word):	
 		word_in_phoneme = []
@@ -85,7 +137,7 @@ class SinhalaTransliterator(Frame):
 			if letter == u"ඕ":
 				word_in_phoneme.append(u'o:')
 			if letter == u"ඖ":
-				word_in_phoneme.append(u'ou')
+				word_in_phoneme.append(u'au')
 			if letter == u"ක":
 				word_in_phoneme.append(u'k')
 			if letter == u"ඛ":
@@ -204,10 +256,11 @@ class SinhalaTransliterator(Frame):
 				word_in_phoneme.append(u'ru:')
 			if letter == u"ෳ":
 				word_in_phoneme.append(u'ou')
+			if letter == u" ":
+				word_in_phoneme.append(u' ')
 		
-		word_in_phoneme = "".join(word_in_phoneme)
+		# word_in_phoneme = "".join(word_in_phoneme) #converting to string
 		return word_in_phoneme
-		
 
 
 root = Tk()                      
