@@ -335,7 +335,7 @@ class SinhalaTransliterator(Frame):
 			if letter == u"e":
 				word_in_singlish.append(u'e')
 			if letter == u"e:":
-				word_in_singlish.append(u'a') #ate, a-level, rate, late  : so all use "a" for ඒ
+				word_in_singlish.append(u'e') #ate, a-level, rate, late  : so all use "a" for ඒ
 			if letter == u"ai":
 				word_in_singlish.append(u'ai')
 			if letter == u"o":
