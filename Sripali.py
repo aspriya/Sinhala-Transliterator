@@ -1,10 +1,12 @@
-# coding: utf-8
+# coding : UTF-16
 
 from tkinter import *
 
 vowel_list = [u"අ", u"ආ", u"ඇ", u"ඈ", u"ඉ", u"ඊ", u"උ", u"ඌ", u"ඍ", u"ඎ", u"ඏ", u"ඐ", u"එ", u"ඒ", u"ඓ", u"ඔ", u"ඕ", u"ඖ"]
 sripali_list = [u"ං",u"ඃ",u"්",u"ා",u"ැ",u"ෑ",u"ි",u"ී",u"ු",u"ූ",u"ෘ",u"ෙ",u"ේ",u"ෛ",u"ො",u"ෝ",u"ෞ",u"ෟ",u"ෲ",u"ෳ"]
 big_list = vowel_list + sripali_list
+
+#  ශ්‍රී ජයවර්ධන පුර කෝට්ටේ
 
 class SinhalaTransliterator(Frame):
 
@@ -61,7 +63,7 @@ class SinhalaTransliterator(Frame):
 		print("mapped text list len :", len(mapped_text_list))
 
 		a_inserted_list = self.insert_a(sin_text_list, mapped_text_list)
-		print( "last array:", a_inserted_list);
+		print( "a inserted phoneme string:", a_inserted_list);
 		print("\n");
 
 		singlish_list = self.phoneme_to_english(a_inserted_list);
@@ -279,6 +281,8 @@ class SinhalaTransliterator(Frame):
 
 			# rule 2 : don't insert /a/ after phoneme representatives of special unicode symbols in sripali_list.
 			elif sin_text_list[i+1] in sripali_list:
+				if sin_text_list[i+1] == u"ං": #to handle special cases like පංචිකාවත්ත where ං is just after a consonent
+					a_inserted_list.append('a')
 				continue
 
 			# handdle spaces
@@ -297,8 +301,10 @@ class SinhalaTransliterator(Frame):
 		for letter in word:
 			if letter == u"ŋ":
 				word_in_singlish.append(u'n') #some times to "ng"
+				continue;
 			if letter == u"h":
 				word_in_singlish.append(u'h')
+				continue
 			if letter == u"a":
 				word_in_singlish.append(u'a')  #vowel
 			if letter == u"a:":
@@ -312,6 +318,8 @@ class SinhalaTransliterator(Frame):
 				word_in_singlish.append(u'i')
 			if letter == u"i:":
 				word_in_singlish.append(u'ee') #some times "ea"
+			if letter == u"ʊ":
+				word_in_singlish.append(u'u')
 			if letter == u"u":
 				word_in_singlish.append(u'u')
 			if letter == u"u:":
@@ -351,10 +359,10 @@ class SinhalaTransliterator(Frame):
 			if letter == u"n̆":
 				word_in_singlish.append(u'n')
 			if letter == u"c":
-				word_in_singlish.append(u'c')
+				word_in_singlish.append(u'ch')
 				continue
 			if letter == u"c":
-				word_in_singlish.append(u'c')
+				word_in_singlish.append(u'ch')
 			if letter == u"ɟ":
 				word_in_singlish.append(u'j')
 			if letter == u"ɟh":
@@ -407,7 +415,7 @@ class SinhalaTransliterator(Frame):
 			if letter == u"m":
 				word_in_singlish.append(u'm')
 			if letter == u"ɓ":
-				word_in_singlish.append(u'b')
+				word_in_singlish.append(u'mb')
 			if letter == u"j":
 				word_in_singlish.append(u'y')
 			if letter == u"r":
