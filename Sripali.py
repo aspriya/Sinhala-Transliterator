@@ -323,7 +323,7 @@ class SinhalaTransliterator(Frame):
 			if letter == u"u":
 				word_in_singlish.append(u'u')
 			if letter == u"u:":
-				word_in_singlish.append(u'oo') # some times "ue"
+				word_in_singlish.append(u'u') # some times "ue"
 			if letter == u"ri":
 				word_in_singlish.append(u'ri')
 			if letter == u"ru:":
@@ -357,7 +357,7 @@ class SinhalaTransliterator(Frame):
 			if letter == u"ŋ":
 				word_in_singlish.append(u'n')
 			if letter == u"n̆":
-				word_in_singlish.append(u'n')
+				word_in_singlish.append(u'g')
 			if letter == u"c":
 				word_in_singlish.append(u'ch')
 				continue
