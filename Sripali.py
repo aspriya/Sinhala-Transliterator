@@ -163,7 +163,7 @@ class SinhalaTransliterator(Frame):
 			if letter == u"ද":
 				word_in_phoneme.append(u'd')
 			if letter == u"ධ":
-				word_in_phoneme.append(u'd')
+				word_in_phoneme.append(u'd_')
 			if letter == u"ඳ":
 				word_in_phoneme.append(u'ɗ')
 			if letter == u"ප":
@@ -397,8 +397,7 @@ class SinhalaTransliterator(Frame):
 				word_in_singlish.append(u'th')
 			if letter == u"d":
 				word_in_singlish.append(u'd')
-				continue
-			if letter == u"d":
+			if letter == u"d_":
 				word_in_singlish.append(u'd')
 			if letter == u"ɗ":
 				word_in_singlish.append(u'nd')
