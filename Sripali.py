@@ -3,7 +3,7 @@
 from tkinter import *
 
 vowel_list = [u"අ", u"ආ", u"ඇ", u"ඈ", u"ඉ", u"ඊ", u"උ", u"ඌ", u"ඍ", u"ඎ", u"ඏ", u"ඐ", u"එ", u"ඒ", u"ඓ", u"ඔ", u"ඕ", u"ඖ"]
-sripali_list = [u"ං",u"ඃ",u"්",u"ා",u"ැ",u"ෑ",u"ි",u"ී",u"ු",u"ූ",u"ෘ",u"ෙ",u"ේ",u"ෛ",u"ො",u"ෝ",u"ෞ",u"ෟ",u"ෲ",u"ෳ"]
+sripali_list = [u"ං",u"ඃ",u"්",u"ා",u"ැ",u"ෑ",u"ි",u"ී",u"ු",u"ූ",u"ෘ",u"ෙ",u"ේ",u"ෛ",u"ො",u"ෝ",u"ෞ",u"ෟ",u"ෲ",u"ෳ","\u200d"]
 big_list = vowel_list + sripali_list
 
 #  ශ්‍රී ජයවර්ධන පුර කෝට්ටේ
@@ -199,7 +199,9 @@ class SinhalaTransliterator(Frame):
 			if letter == u"ෆ":
 				word_in_phoneme.append(u'f')
 			if letter == u"්":
-				word_in_phoneme.append(u'_')
+				word_in_phoneme.append(u'_')  # **** hal symbol
+			if letter == "\u200d":
+				word_in_phoneme.append(u'_')  # **** for rakaransaya
 			if letter == u"ා":
 				word_in_phoneme.append(u'a:')
 			if letter == u"ැ":
@@ -236,6 +238,7 @@ class SinhalaTransliterator(Frame):
 				word_in_phoneme.append(u'ou')
 			if letter == u" ":
 				word_in_phoneme.append(u' ')
+
 
 		# word_in_phoneme = "".join(word_in_phoneme) #converting to string
 		return word_in_phoneme
@@ -335,7 +338,7 @@ class SinhalaTransliterator(Frame):
 			if letter == u"e":
 				word_in_singlish.append(u'e')
 			if letter == u"e:":
-				word_in_singlish.append(u'e') #ate, a-level, rate, late  : so all use "a" for ඒ
+				word_in_singlish.append(u'e')
 			if letter == u"ai":
 				word_in_singlish.append(u'ai')
 			if letter == u"o":
