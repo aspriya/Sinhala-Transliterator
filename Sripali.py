@@ -398,7 +398,7 @@ class SinhalaTransliterator(Frame):
 			if letter == u"d":
 				word_in_singlish.append(u'd')
 			if letter == u"d_":
-				word_in_singlish.append(u'd')
+				word_in_singlish.append(u'dh')
 			if letter == u"ɗ":
 				word_in_singlish.append(u'nd')
 			if letter == u"p":
