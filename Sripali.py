@@ -6,6 +6,9 @@ vowel_list = [u"අ", u"ආ", u"ඇ", u"ඈ", u"ඉ", u"ඊ", u"උ", u"ඌ", u"
 sripali_list = [u"ං",u"ඃ",u"්",u"ා",u"ැ",u"ෑ",u"ි",u"ී",u"ු",u"ූ",u"ෘ",u"ෙ",u"ේ",u"ෛ",u"ො",u"ෝ",u"ෞ",u"ෟ",u"ෲ",u"ෳ","\u200d"]
 big_list = vowel_list + sripali_list
 
+special_character_list = [u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u".", u"-", u",", u"/", u" ", "\n" ] #*** cant inseart u"\" to here ??? :o
+
+
 #  ශ්‍රී ජයවර්ධන පුර කෝට්ටේ
 
 class SinhalaTransliterator(Frame):
@@ -236,41 +239,45 @@ class SinhalaTransliterator(Frame):
 				word_in_phoneme.append(u'ru:')
 			if letter == u"ෳ":
 				word_in_phoneme.append(u'ou')
+
+			if letter == u"1":
+				word_in_phoneme.append(u'1')
+			if letter == u"2":
+				word_in_phoneme.append(u'2')
+			if letter == u"3":
+				word_in_phoneme.append(u'3')
+			if letter == u"4":
+				word_in_phoneme.append(u'4')
+			if letter == u"5":
+				word_in_phoneme.append(u'5')
+			if letter == u"6":
+				word_in_phoneme.append(u'6')
+			if letter == u"7":
+				word_in_phoneme.append(u'7')
+			if letter == u"8":
+				word_in_phoneme.append(u'8')
+			if letter == u"9":
+				word_in_phoneme.append(u'9')
+			if letter == u"0":
+				word_in_phoneme.append(u'0')
+			if letter == u".":
+				word_in_phoneme.append(u'.')
+			if letter == u"-":
+				word_in_phoneme.append(u'-')
+			if letter == u"/":
+				word_in_phoneme.append(u'/')
 			if letter == u" ":
 				word_in_phoneme.append(u' ')
-
-
+			if letter == u",":
+				word_in_phoneme.append(u',')
+			if letter == u"\n":
+				word_in_phoneme.append(u'\n')
 		# word_in_phoneme = "".join(word_in_phoneme) #converting to string
 		return word_in_phoneme
 
-		def insert_a(self, sin_text_list, mapped_text_list):
-			a_inserted_list = []
-
-			for i, letter in enumerate(mapped_text_list):
-				a_inserted_list.append(letter)
-
-				print(i, ": ", letter, " -> ", sin_text_list[i])
-
-				# rule 1 : dont insert /a/ after a wovel phoneme representative
-				if sin_text_list[i] in big_list:
-					continue
-
-				# rule 2 : don't insert /a/ after phoneme representatives of special unicode symbols in sripali_list.
-				elif sin_text_list[i+1] in sripali_list:
-					continue
-
-				# handdle spaces
-				elif letter == ' ':
-					continue
-
-				# rule 3 : if the letter is not filtered by above rules, then append /a/
-				else:
-					a_inserted_list.append('a')
-
-			return a_inserted_list
-
 
 	def insert_a(self, sin_text_list, mapped_text_list):
+		sin_text_list.append("_") #To handle \n (new line characters, append a dummy non effecting symbol at end of sin_text_list to overcome error of length mis match of occuring in rule 2)
 		a_inserted_list = []
 
 		for i, letter in enumerate(mapped_text_list):
@@ -282,15 +289,15 @@ class SinhalaTransliterator(Frame):
 			if sin_text_list[i] in big_list:
 				continue
 
-			# rule 2 : don't insert /a/ after phoneme representatives of special unicode symbols in sripali_list.
+			# rule 2 : don't insert /a/ after a phoneme symbol, if the next relevent symbol in sin_text_list is in sripali_list.
 			elif sin_text_list[i+1] in sripali_list:
 				if sin_text_list[i+1] == u"ං": #to handle special cases like පංචිකාවත්ත where ං is just after a consonent
 					a_inserted_list.append('a')
 				continue
 
-			# handdle spaces
-			elif letter == ' ':
-				continue
+			# handdle spaces, commas and new line characters
+			elif letter in special_character_list:
+					continue
 
 			# rule 3 : if the letter is not filtered by above rules, then append /a/
 			else:
@@ -450,8 +457,39 @@ class SinhalaTransliterator(Frame):
 				continue
 			if letter == u"ru:":
 				word_in_singlish.append(u'ru')
+
+			if letter == u"1":
+				word_in_singlish.append(u'1')
+			if letter == u"2":
+				word_in_singlish.append(u'2')
+			if letter == u"3":
+				word_in_singlish.append(u'3')
+			if letter == u"4":
+				word_in_singlish.append(u'4')
+			if letter == u"5":
+				word_in_singlish.append(u'5')
+			if letter == u"6":
+				word_in_singlish.append(u'6')
+			if letter == u"7":
+				word_in_singlish.append(u'7')
+			if letter == u"8":
+				word_in_singlish.append(u'8')
+			if letter == u"9":
+				word_in_singlish.append(u'9')
+			if letter == u"0":
+				word_in_singlish.append(u'0')
+			if letter == u".":
+				word_in_singlish.append(u'.')
+			if letter == u"-":
+				word_in_singlish.append(u'-')
+			if letter == u"/":
+				word_in_singlish.append(u'/')
 			if letter == u" ":
 				word_in_singlish.append(u' ')
+			if letter == u",":
+				word_in_singlish.append(u',')
+			if letter == u"\n":
+				word_in_singlish.append(u'\n')
 
 		# word_in_phoneme = "".join(word_in_phoneme) #converting to string
 		return word_in_singlish
