@@ -1,12 +1,17 @@
 # coding : UTF-16
 
+import numpy as np
 from tkinter import *
 
 vowel_list = [u"අ", u"ආ", u"ඇ", u"ඈ", u"ඉ", u"ඊ", u"උ", u"ඌ", u"ඍ", u"ඎ", u"ඏ", u"ඐ", u"එ", u"ඒ", u"ඓ", u"ඔ", u"ඕ", u"ඖ"]
 sripali_list = [u"ං",u"ඃ",u"්",u"ා",u"ැ",u"ෑ",u"ි",u"ී",u"ු",u"ූ",u"ෘ",u"ෙ",u"ේ",u"ෛ",u"ො",u"ෝ",u"ෞ",u"ෟ",u"ෲ",u"ෳ","\u200d"]
 big_list = vowel_list + sripali_list
 
-special_character_list = [u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u".", u"-", u",", u"/", u" ", "\n" ] #*** cant inseart u"\" to here ??? :o
+special_character_list = [u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u":", u";", u".", u"-", u",", u"/", u" ", "\n"] #*** cant inseart u"\" to here ??? :o
+
+unwanted_symbols = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+unwanted_symbols = unwanted_symbols + ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+unwanted_symbols = unwanted_symbols + ["~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "=", "[", "]", "{", "}", "|", "	", "?", "<", ">"]
 
 
 #  ශ්‍රී ජයවර්ධන පුර කෝට්ටේ
@@ -48,6 +53,15 @@ class SinhalaTransliterator(Frame):
 
 	def transliterate(self):
 		sin_text = self.sinhala.get(0.0, END)
+
+		#remove english and unwanted symbols
+		sin_text_temp_list = list(sin_text)
+		l3 = [x for x in sin_text_temp_list if x not in unwanted_symbols]
+		print("original is: ", sin_text_temp_list)
+		print("unwanted symbols removed list is ", l3)
+		sin_text = "".join(l3)
+		print("unwanted symbols removed sin_text is ", sin_text)
+
 
 		#process the sinhala uncode string
 		print(type(sin_text))
@@ -130,7 +144,7 @@ class SinhalaTransliterator(Frame):
 			if letter == u"ඞ":
 				word_in_phoneme.append(u'ŋ')
 			if letter == u"ඟ":
-				word_in_phoneme.append(u'n̆')
+				word_in_phoneme.append(u'n̆') # *** n දැමිය යුතු සඤ්ඥක අකුරක්
 			if letter == u"ච":
 				word_in_phoneme.append(u'c')
 			if letter == u"ඡ":
@@ -144,7 +158,7 @@ class SinhalaTransliterator(Frame):
 			if letter == u"ඥ":
 				word_in_phoneme.append(u'jɲ')
 			if letter == u"ඦ":
-				word_in_phoneme.append(u'ʄ')
+				word_in_phoneme.append(u'ʄ') # *** n දැමිය යුතු සඤ්ඥක අකුරක් - ඉඦු ඉඦු one an only word in sinhala that has ඦ
 			if letter == u"ට":
 				word_in_phoneme.append(u'ʈ')
 			if letter == u"ඨ":
@@ -158,7 +172,7 @@ class SinhalaTransliterator(Frame):
 			if letter == u"ණ":
 				word_in_phoneme.append(u'n')
 			if letter == u"ඬ":
-				word_in_phoneme.append(u'nɖ')
+				word_in_phoneme.append(u'ɖ_') # *** n දැමිය යුතු සඤ්ඥක අකුරක්
 			if letter == u"ත":
 				word_in_phoneme.append(u't')
 			if letter == u"ථ":
@@ -168,7 +182,7 @@ class SinhalaTransliterator(Frame):
 			if letter == u"ධ":
 				word_in_phoneme.append(u'd_')
 			if letter == u"ඳ":
-				word_in_phoneme.append(u'ɗ')
+				word_in_phoneme.append(u'ɗ')  # *** n දැමිය යුතු සඤ්ඥක අකුරක් - e.g සඳතැන්න
 			if letter == u"ප":
 				word_in_phoneme.append(u'p')
 			if letter == u"ඵ":
@@ -180,7 +194,7 @@ class SinhalaTransliterator(Frame):
 			if letter == u"ම":
 				word_in_phoneme.append(u'm')
 			if letter == u"ඹ":
-				word_in_phoneme.append(u'ɓ')
+				word_in_phoneme.append(u'ɓ') # *** m දැමිය යුතු සඤ්ඥක අකුර
 			if letter == u"ය":
 				word_in_phoneme.append(u'j')
 			if letter == u"ර":
@@ -272,6 +286,10 @@ class SinhalaTransliterator(Frame):
 				word_in_phoneme.append(u',')
 			if letter == u"\n":
 				word_in_phoneme.append(u'\n')
+			if letter == u":":
+				word_in_phoneme.append(u':')
+			if letter == u";":
+				word_in_phoneme.append(u':')
 		# word_in_phoneme = "".join(word_in_phoneme) #converting to string
 		return word_in_phoneme
 
@@ -309,6 +327,24 @@ class SinhalaTransliterator(Frame):
 	def phoneme_to_english(self, word):
 		word_in_singlish = []
 		for letter in word:
+
+			if letter == u"ɖ_":
+				word_in_singlish.append(u'nd') # *** සඤ්ඥක අකුරු, so inseart n prior
+
+			if letter == u"n̆":
+				word_in_singlish.append(u'ng') # *** සඤ්ඥක අකුරු, so inseart n prior
+
+			if letter == u"ɗ":
+				word_in_singlish.append(u'nd') # *** සඤ්ඥක අකුරු, so inseart n prior
+
+			if letter == u"ʄ":
+				word_in_singlish.append(u'nj') # *** සඤ්ඥක අකුරු, so inseart n prior
+
+			if letter == u"ɓ":
+				word_in_singlish.append(u'mb') # *** සඤ්ඥක අකුරු, so inseart n prior
+
+
+
 			if letter == u"ŋ":
 				word_in_singlish.append(u'n') #some times to "ng"
 				continue;
@@ -366,8 +402,6 @@ class SinhalaTransliterator(Frame):
 				word_in_singlish.append(u'g')
 			if letter == u"ŋ":
 				word_in_singlish.append(u'n')
-			if letter == u"n̆":
-				word_in_singlish.append(u'g')
 			if letter == u"c":
 				word_in_singlish.append(u'ch')
 				continue
@@ -381,8 +415,6 @@ class SinhalaTransliterator(Frame):
 				word_in_singlish.append(u'kn')
 			if letter == u"jɲ":
 				word_in_singlish.append(u'gn')
-			if letter == u"ʄ":
-				word_in_singlish.append(u'nj')
 			if letter == u"ʈ":
 				word_in_singlish.append(u't')
 				continue
@@ -398,8 +430,6 @@ class SinhalaTransliterator(Frame):
 				continue
 			if letter == u"n":
 				word_in_singlish.append(u'n')
-			if letter == u"nɖ":
-				word_in_singlish.append(u'nd')
 			if letter == u"t":
 				word_in_singlish.append(u'th')
 				continue
@@ -409,8 +439,6 @@ class SinhalaTransliterator(Frame):
 				word_in_singlish.append(u'd')
 			if letter == u"d_":
 				word_in_singlish.append(u'dh')
-			if letter == u"ɗ":
-				word_in_singlish.append(u'nd')
 			if letter == u"p":
 				word_in_singlish.append(u'p')
 				continue
@@ -423,8 +451,6 @@ class SinhalaTransliterator(Frame):
 				word_in_singlish.append(u'b')
 			if letter == u"m":
 				word_in_singlish.append(u'm')
-			if letter == u"ɓ":
-				word_in_singlish.append(u'mb')
 			if letter == u"j":
 				word_in_singlish.append(u'y')
 			if letter == u"r":
@@ -490,6 +516,10 @@ class SinhalaTransliterator(Frame):
 				word_in_singlish.append(u',')
 			if letter == u"\n":
 				word_in_singlish.append(u'\n')
+			if letter == u":":
+				word_in_singlish.append(u':')
+			if letter == u";":
+				word_in_singlish.append(u':')
 
 		# word_in_phoneme = "".join(word_in_phoneme) #converting to string
 		return word_in_singlish
