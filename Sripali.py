@@ -5,14 +5,10 @@ vowel_list = [u"අ", u"ආ", u"ඇ", u"ඈ", u"ඉ", u"ඊ", u"උ", u"ඌ", u"
 sripali_list = [u"ං",u"ඃ",u"්",u"ා",u"ැ",u"ෑ",u"ි",u"ී",u"ු",u"ූ",u"ෘ",u"ෙ",u"ේ",u"ෛ",u"ො",u"ෝ",u"ෞ",u"ෟ",u"ෲ",u"ෳ","\u200d"]
 big_list = vowel_list + sripali_list
 
-special_character_list = [u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u":", u";", u".", u"-", u",", u"/", u" ", "\n"] #*** cant inseart u"\" to here ??? :o
+special_character_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ";", ".", "-", ",", "/", " ", "\n"] #*** cant inseart u"\" to here ??? :o
 
-unwanted_symbols = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-unwanted_symbols = unwanted_symbols + ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+unwanted_symbols = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 unwanted_symbols = unwanted_symbols + ["~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "=", "[", "]", "{", "}", "|", "	", "?", "<", ">"]
-
-
-#  ශ්‍රී ජයවර්ධන පුර කෝට්ටේ
 
 class SinhalaTransliterator(Frame):
 
@@ -188,7 +184,7 @@ class SinhalaTransliterator(Frame):
 			if letter == u"බ":
 				word_in_phoneme.append(u'b')
 			if letter == u"භ":
-				word_in_phoneme.append(u'b')
+				word_in_phoneme.append(u'b_')
 			if letter == u"ම":
 				word_in_phoneme.append(u'm')
 			if letter == u"ඹ":
@@ -445,8 +441,8 @@ class SinhalaTransliterator(Frame):
 			if letter == u"b":
 				word_in_singlish.append(u'b')
 				continue
-			if letter == u"b":
-				word_in_singlish.append(u'b')
+			if letter == u"b_":
+				word_in_singlish.append(u'bh')   # *** mahapprana b -> bh
 			if letter == u"m":
 				word_in_singlish.append(u'm')
 			if letter == u"j":
