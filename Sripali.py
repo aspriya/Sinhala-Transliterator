@@ -124,7 +124,7 @@ class SinhalaTransliterator(Frame):
 			if letter == u"ග":
 				word_in_phoneme_list.append(u'ɡ')
 			if letter == u"ඝ":
-				word_in_phoneme_list.append(u'ɡ')
+				word_in_phoneme_list.append(u'ɡ_')
 			if letter == u"ඞ":
 				word_in_phoneme_list.append(u'ŋ')
 			if letter == u"ඟ":
@@ -326,6 +326,16 @@ class SinhalaTransliterator(Frame):
 				word_in_singlish.append(u'mb') # *** සඤ්ඥක අකුරු, so inseart n prior
 
 
+			if letter == u"d_":
+				word_in_singlish.append(u'dh')   # *** mahapprana d_ -> dh
+
+			if letter == u"b_":
+				word_in_singlish.append(u'bh')   # *** mahapprana b -> bh
+
+			if letter == u"ɡ_":
+				word_in_singlish.append(u'gh')   # *** mahapprana g_ -> gh
+
+
 			if letter == u"ŋ":
 				word_in_singlish.append(u'n') #some times to "ng"
 				continue;
@@ -375,9 +385,6 @@ class SinhalaTransliterator(Frame):
 				word_in_singlish.append(u'k')
 			if letter == u"ɡ":
 				word_in_singlish.append(u'g')
-				continue
-			if letter == u"ɡ":
-				word_in_singlish.append(u'g')
 			if letter == u"ŋ":
 				word_in_singlish.append(u'n')
 			if letter == u"c":
@@ -415,8 +422,7 @@ class SinhalaTransliterator(Frame):
 				word_in_singlish.append(u'th')
 			if letter == u"d":
 				word_in_singlish.append(u'd')
-			if letter == u"d_":
-				word_in_singlish.append(u'dh')
+
 			if letter == u"p":
 				word_in_singlish.append(u'p')
 				continue
@@ -425,8 +431,6 @@ class SinhalaTransliterator(Frame):
 			if letter == u"b":
 				word_in_singlish.append(u'b')
 				continue
-			if letter == u"b_":
-				word_in_singlish.append(u'bh')   # *** mahapprana b -> bh
 			if letter == u"m":
 				word_in_singlish.append(u'm')
 			if letter == u"j":
