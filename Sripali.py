@@ -1,5 +1,6 @@
 # coding : UTF-16
 from tkinter import *
+# from tkinter import tkk
 
 vowel_list = [u"අ", u"ආ", u"ඇ", u"ඈ", u"ඉ", u"ඊ", u"උ", u"ඌ", u"ඍ", u"ඎ", u"ඏ", u"ඐ", u"එ", u"ඒ", u"ඓ", u"ඔ", u"ඕ", u"ඖ"]
 sripali_list = [u"ං",u"ඃ",u"්",u"ා",u"ැ",u"ෑ",u"ි",u"ී",u"ු",u"ූ",u"ෘ",u"ෙ",u"ේ",u"ෛ",u"ො",u"ෝ",u"ෞ",u"ෟ",u"ෲ",u"ෳ","\u200d"]
@@ -29,10 +30,10 @@ class SinhalaTransliterator(Frame):
 		self.label1 = Label(self, text="Enter a sinhala text string: ")
 		self.label1.grid(row=4, column=0, sticky=NW)
 
-		self.sinhala = Text(self, width = 50, height = 7, wrap=WORD)
+		self.sinhala = Text(self, width = 50, height = 7, wrap=WORD )
 		self.sinhala.grid(row=4, column=1, sticky=E)
 
-		self.convert = Button(self, text="Convert", command=self.transliterate, width =10, height=1, bg="lightblue")
+		self.convert = Button(self, text="Convert", command=self.transliterate,  width =10, height=1, bg="lightblue")
 		self.convert.grid(row=5, column=1, sticky=E)
 
 		self.space_row2 = Label(self, text=" ")
@@ -74,217 +75,215 @@ class SinhalaTransliterator(Frame):
 
 
 	def convert_to_phoneme(self, word):
-		word_in_phoneme = []
+		word_in_phoneme_list = []
 		for letter in word:
 			if letter == u"ං":
-				word_in_phoneme.append(u'ŋ')
+				word_in_phoneme_list.append(u'ŋ')
 			if letter == u"ඃ":
-				word_in_phoneme.append(u'h')
+				word_in_phoneme_list.append(u'h')
 			if letter == u"අ":
-				word_in_phoneme.append(u'a')
+				word_in_phoneme_list.append(u'a')
 			if letter == u"ආ":
-				word_in_phoneme.append(u'a:')
+				word_in_phoneme_list.append(u'a:')
 			if letter == u"ඇ":
-				word_in_phoneme.append(u'æ')
+				word_in_phoneme_list.append(u'æ')
 			if letter == u"ඈ":
-				word_in_phoneme.append(u'æ:')
+				word_in_phoneme_list.append(u'æ:')
 			if letter == u"ඉ":
-				word_in_phoneme.append(u'i')
+				word_in_phoneme_list.append(u'i')
 			if letter == u"ඊ":
-				word_in_phoneme.append(u'i:')
+				word_in_phoneme_list.append(u'i:')
 			if letter == u"උ":
-				word_in_phoneme.append(u'ʊ')
+				word_in_phoneme_list.append(u'u')
 			if letter == u"ඌ":
-				word_in_phoneme.append(u'u:')
+				word_in_phoneme_list.append(u'u:')
 			if letter == u"ඍ":
-				word_in_phoneme.append(u'ri')
+				word_in_phoneme_list.append(u'ri')
 			if letter == u"ඎ":
-				word_in_phoneme.append(u'ru:')
+				word_in_phoneme_list.append(u'ru:')
 			if letter == u"ඏ":
-				word_in_phoneme.append(u'ilu')
+				word_in_phoneme_list.append(u'ilu')
 			if letter == u"ඐ":
-				word_in_phoneme.append(u'ilu:')
+				word_in_phoneme_list.append(u'ilu:')
 			if letter == u"එ":
-				word_in_phoneme.append(u'e')
+				word_in_phoneme_list.append(u'e')
 			if letter == u"ඒ":
-				word_in_phoneme.append(u'e:')
+				word_in_phoneme_list.append(u'e:')
 			if letter == u"ඓ":
-				word_in_phoneme.append(u'ai')
+				word_in_phoneme_list.append(u'ai')
 			if letter == u"ඔ":
-				word_in_phoneme.append(u'o')
+				word_in_phoneme_list.append(u'o')
 			if letter == u"ඕ":
-				word_in_phoneme.append(u'o:')
+				word_in_phoneme_list.append(u'o:')
 			if letter == u"ඖ":
-				word_in_phoneme.append(u'au')
+				word_in_phoneme_list.append(u'ou')
 			if letter == u"ක":
-				word_in_phoneme.append(u'k')
+				word_in_phoneme_list.append(u'k')
 			if letter == u"ඛ":
-				word_in_phoneme.append(u'k')
+				word_in_phoneme_list.append(u'k')
 			if letter == u"ග":
-				word_in_phoneme.append(u'ɡ')
+				word_in_phoneme_list.append(u'ɡ')
 			if letter == u"ඝ":
-				word_in_phoneme.append(u'ɡ')
+				word_in_phoneme_list.append(u'ɡ')
 			if letter == u"ඞ":
-				word_in_phoneme.append(u'ŋ')
+				word_in_phoneme_list.append(u'ŋ')
 			if letter == u"ඟ":
-				word_in_phoneme.append(u'n̆') # *** n දැමිය යුතු සඤ්ඥක අකුරක්
+				word_in_phoneme_list.append(u'ɠ') # *** n දැමිය යුතු සඤ්ඥක අකුරක්
 			if letter == u"ච":
-				word_in_phoneme.append(u'c')
+				word_in_phoneme_list.append(u'c')
 			if letter == u"ඡ":
-				word_in_phoneme.append(u'c')
+				word_in_phoneme_list.append(u'c')
 			if letter == u"ජ":
-				word_in_phoneme.append(u'ɟ')
+				word_in_phoneme_list.append(u'ɟ')
 			if letter == u"ඣ":
-				word_in_phoneme.append(u'ɟh')
+				word_in_phoneme_list.append(u'ɟh')
 			if letter == u"ඤ":
-				word_in_phoneme.append(u'ɲ')
+				word_in_phoneme_list.append(u'ɲ')
 			if letter == u"ඥ":
-				word_in_phoneme.append(u'jɲ')
+				word_in_phoneme_list.append(u'jɲ')
 			if letter == u"ඦ":
-				word_in_phoneme.append(u'ʄ') # *** n දැමිය යුතු සඤ්ඥක අකුරක් - ඉඦු ඉඦු one an only word in sinhala that has ඦ
+				word_in_phoneme_list.append(u'ʄ') # *** n දැමිය යුතු සඤ්ඥක අකුරක් - ඉඦු ඉඦු one an only word in sinhala that has ඦ
 			if letter == u"ට":
-				word_in_phoneme.append(u'ʈ')
+				word_in_phoneme_list.append(u'ʈ')
 			if letter == u"ඨ":
-				word_in_phoneme.append(u'ʈ')
+				word_in_phoneme_list.append(u'ʈ')
 			if letter == u"ඩ":
-				word_in_phoneme.append(u'ɖ')
+				word_in_phoneme_list.append(u'ɖ')
 			if letter == u"ඪ":
-				word_in_phoneme.append(u'ɖ')
+				word_in_phoneme_list.append(u'ɖ')
 			if letter == u"න":
-				word_in_phoneme.append(u'n')
+				word_in_phoneme_list.append(u'n')
 			if letter == u"ණ":
-				word_in_phoneme.append(u'n')
+				word_in_phoneme_list.append(u'n')
 			if letter == u"ඬ":
-				word_in_phoneme.append(u'ɖ_') # *** n දැමිය යුතු සඤ්ඥක අකුරක්
+				word_in_phoneme_list.append(u'ɖ_') # *** n දැමිය යුතු සඤ්ඥක අකුරක්
 			if letter == u"ත":
-				word_in_phoneme.append(u't')
+				word_in_phoneme_list.append(u't')
 			if letter == u"ථ":
-				word_in_phoneme.append(u't')
+				word_in_phoneme_list.append(u't')
 			if letter == u"ද":
-				word_in_phoneme.append(u'd')
+				word_in_phoneme_list.append(u'd')
 			if letter == u"ධ":
-				word_in_phoneme.append(u'd_')
+				word_in_phoneme_list.append(u'd_')
 			if letter == u"ඳ":
-				word_in_phoneme.append(u'ɗ')  # *** n දැමිය යුතු සඤ්ඥක අකුරක් - e.g සඳතැන්න
+				word_in_phoneme_list.append(u'ɗ')  # *** n දැමිය යුතු සඤ්ඥක අකුරක් - e.g සඳතැන්න
 			if letter == u"ප":
-				word_in_phoneme.append(u'p')
+				word_in_phoneme_list.append(u'p')
 			if letter == u"ඵ":
-				word_in_phoneme.append(u'p')
+				word_in_phoneme_list.append(u'p')
 			if letter == u"බ":
-				word_in_phoneme.append(u'b')
+				word_in_phoneme_list.append(u'b')
 			if letter == u"භ":
-				word_in_phoneme.append(u'b_')
+				word_in_phoneme_list.append(u'b_')
 			if letter == u"ම":
-				word_in_phoneme.append(u'm')
+				word_in_phoneme_list.append(u'm')
 			if letter == u"ඹ":
-				word_in_phoneme.append(u'ɓ') # *** m දැමිය යුතු සඤ්ඥක අකුර
+				word_in_phoneme_list.append(u'ɓ') # *** m දැමිය යුතු සඤ්ඥක අකුර
 			if letter == u"ය":
-				word_in_phoneme.append(u'j')
+				word_in_phoneme_list.append(u'j')
 			if letter == u"ර":
-				word_in_phoneme.append(u'r')
+				word_in_phoneme_list.append(u'r')
 			if letter == u"ල":
-				word_in_phoneme.append(u'l')
+				word_in_phoneme_list.append(u'l')
 			if letter == u"ව":
-				word_in_phoneme.append(u'w')
+				word_in_phoneme_list.append(u'w')
 			if letter == u"ශ":
-				word_in_phoneme.append(u'ʃ')
+				word_in_phoneme_list.append(u'ʃ')
 			if letter == u"ෂ":
-				word_in_phoneme.append(u'ʃ')
+				word_in_phoneme_list.append(u'ʃ')
 			if letter == u"ස":
-				word_in_phoneme.append(u's')
+				word_in_phoneme_list.append(u's')
 			if letter == u"හ":
-				word_in_phoneme.append(u'h')
+				word_in_phoneme_list.append(u'h')
 			if letter == u"ළ":
-				word_in_phoneme.append(u'l')
+				word_in_phoneme_list.append(u'l')
 			if letter == u"ෆ":
-				word_in_phoneme.append(u'f')
+				word_in_phoneme_list.append(u'f')
 			if letter == u"්":
-				word_in_phoneme.append(u'_')  # **** hal symbol
+				word_in_phoneme_list.append(u'_')  # **** hal symbol
 			if letter == "\u200d":
-				word_in_phoneme.append(u'_')  # **** for rakaransaya
+				word_in_phoneme_list.append(u'_')  # **** for rakaransaya
 			if letter == u"ා":
-				word_in_phoneme.append(u'a:')
+				word_in_phoneme_list.append(u'a:')
 			if letter == u"ැ":
-				word_in_phoneme.append(u'æ')
+				word_in_phoneme_list.append(u'æ')
 			if letter == u"ෑ":
-				word_in_phoneme.append(u'æ:')
+				word_in_phoneme_list.append(u'æ:')
 			if letter == u"ි":
-				word_in_phoneme.append(u'i')
+				word_in_phoneme_list.append(u'i')
 			if letter == u"ී":
-				word_in_phoneme.append(u'i:')
+				word_in_phoneme_list.append(u'i:')
 			if letter == u"ු":
-				word_in_phoneme.append(u'u')
+				word_in_phoneme_list.append(u'u')
 			if letter == u"ූ":
-				word_in_phoneme.append(u'u:')
+				word_in_phoneme_list.append(u'u:')
 			if letter == u"ෘ":
-				word_in_phoneme.append(u'ru')
-			if letter == u"ෙ":
-				word_in_phoneme.append(u'e')
-			if letter == u"ේ":
-				word_in_phoneme.append(u'e:')
-			if letter == u"ෛ":
-				word_in_phoneme.append(u'ai')
-			if letter == u"ො":
-				word_in_phoneme.append(u'o')
-			if letter == u"ෝ":
-				word_in_phoneme.append(u'o:')
-			if letter == u"ෞ":
-				word_in_phoneme.append(u'aou')
-			if letter == u"ෟ":
-				word_in_phoneme.append(u'ou')
+				word_in_phoneme_list.append(u'ru')
 			if letter == u"ෲ":
-				word_in_phoneme.append(u'ru:')
-			if letter == u"ෳ":
-				word_in_phoneme.append(u'ou')
+				word_in_phoneme_list.append(u'ru:')
+			if letter == u"ෙ":
+				word_in_phoneme_list.append(u'e')
+			if letter == u"ේ":
+				word_in_phoneme_list.append(u'e:')
+			if letter == u"ෛ":
+				word_in_phoneme_list.append(u'ai')
+			if letter == u"ො":
+				word_in_phoneme_list.append(u'o')
+			if letter == u"ෝ":
+				word_in_phoneme_list.append(u'o:')
+			if letter == u"ෞ":
+				word_in_phoneme_list.append(u'ou')
+			if letter == u"ෟ":
+				word_in_phoneme_list.append(u'ou')
+
+
 
 			if letter == u"1":
-				word_in_phoneme.append(u'1')
+				word_in_phoneme_list.append(u'1')
 			if letter == u"2":
-				word_in_phoneme.append(u'2')
+				word_in_phoneme_list.append(u'2')
 			if letter == u"3":
-				word_in_phoneme.append(u'3')
+				word_in_phoneme_list.append(u'3')
 			if letter == u"4":
-				word_in_phoneme.append(u'4')
+				word_in_phoneme_list.append(u'4')
 			if letter == u"5":
-				word_in_phoneme.append(u'5')
+				word_in_phoneme_list.append(u'5')
 			if letter == u"6":
-				word_in_phoneme.append(u'6')
+				word_in_phoneme_list.append(u'6')
 			if letter == u"7":
-				word_in_phoneme.append(u'7')
+				word_in_phoneme_list.append(u'7')
 			if letter == u"8":
-				word_in_phoneme.append(u'8')
+				word_in_phoneme_list.append(u'8')
 			if letter == u"9":
-				word_in_phoneme.append(u'9')
+				word_in_phoneme_list.append(u'9')
 			if letter == u"0":
-				word_in_phoneme.append(u'0')
+				word_in_phoneme_list.append(u'0')
 			if letter == u".":
-				word_in_phoneme.append(u'.')
+				word_in_phoneme_list.append(u'.')
 			if letter == u"-":
-				word_in_phoneme.append(u'-')
+				word_in_phoneme_list.append(u'-')
 			if letter == u"/":
-				word_in_phoneme.append(u'/')
+				word_in_phoneme_list.append(u'/')
 			if letter == u" ":
-				word_in_phoneme.append(u' ')
+				word_in_phoneme_list.append(u' ')
 			if letter == u",":
-				word_in_phoneme.append(u',')
+				word_in_phoneme_list.append(u',')
 			if letter == u"\n":
-				word_in_phoneme.append(u'\n')
+				word_in_phoneme_list.append(u'\n')
 			if letter == u":":
-				word_in_phoneme.append(u':')
+				word_in_phoneme_list.append(u':')
 			if letter == u";":
-				word_in_phoneme.append(u':')
+				word_in_phoneme_list.append(u':')
 		# word_in_phoneme = "".join(word_in_phoneme) #converting to string
-		return word_in_phoneme
+		return word_in_phoneme_list
 
 
 	def insert_a(self, sin_text_list, mapped_text_list):
-		sin_text_list.append("_") #To handle \n (new line characters, append a dummy non effecting symbol at end of sin_text_list to overcome error of length mis match of occuring in rule 2)
+		sin_text_list.append("_") # Append a dummy non effecting symbol at end of sin_text_list to overcome error of length mis match of occuring in rule 2)
 		a_inserted_list = []
 
 		for i, letter in enumerate(mapped_text_list):
 			a_inserted_list.append(letter)
-
-			print(i, ": ", letter, " -> ", sin_text_list[i])
 
 			# rule 1 : dont insert /a/ after a wovel phoneme representative
 			if sin_text_list[i] in big_list:
@@ -314,7 +313,7 @@ class SinhalaTransliterator(Frame):
 			if letter == u"ɖ_":
 				word_in_singlish.append(u'nd') # *** සඤ්ඥක අකුරු, so inseart n prior
 
-			if letter == u"n̆":
+			if letter == u"ɠ":
 				word_in_singlish.append(u'ng') # *** සඤ්ඥක අකුරු, so inseart n prior
 
 			if letter == u"ɗ":
@@ -325,7 +324,6 @@ class SinhalaTransliterator(Frame):
 
 			if letter == u"ɓ":
 				word_in_singlish.append(u'mb') # *** සඤ්ඥක අකුරු, so inseart n prior
-
 
 
 			if letter == u"ŋ":
@@ -347,10 +345,9 @@ class SinhalaTransliterator(Frame):
 				word_in_singlish.append(u'i')
 			if letter == u"i:":
 				word_in_singlish.append(u'ee') #some times "ea"
-			if letter == u"ʊ":
-				word_in_singlish.append(u'u')
 			if letter == u"u":
 				word_in_singlish.append(u'u')
+
 			if letter == u"u:":
 				word_in_singlish.append(u'u') # some times "ue"
 			if letter == u"ri":
@@ -371,8 +368,6 @@ class SinhalaTransliterator(Frame):
 				word_in_singlish.append(u'o')
 			if letter == u"o:":
 				word_in_singlish.append(u'o')  #ex: හෝමාගම  -> homagama
-			if letter == u"au":
-				word_in_singlish.append(u'au')
 			if letter == u"k":
 				word_in_singlish.append(u'k')
 				continue
@@ -459,10 +454,8 @@ class SinhalaTransliterator(Frame):
 			if letter == u"_ ":
 				word_in_singlish.append(u'_')
 
-			if letter == u"aou":
-				word_in_singlish.append(u'au')
 			if letter == u"ou":
-				word_in_singlish.append(u'ou')
+				word_in_singlish.append(u'au')
 				continue
 			if letter == u"ru:":
 				word_in_singlish.append(u'ru')
@@ -509,6 +502,7 @@ class SinhalaTransliterator(Frame):
 
 
 root = Tk()
+# root.configure(background='gray')
 root.title("Welcome to the System")
 root.geometry("600x400")
 app = SinhalaTransliterator(root)
