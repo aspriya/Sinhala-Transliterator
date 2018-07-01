@@ -50,28 +50,17 @@ class SinhalaTransliterator(Frame):
 
 		#remove english and unwanted symbols
 		sin_text_temp_list = list(sin_text)
-		l3 = [x for x in sin_text_temp_list if x not in unwanted_symbols]
+		sin_text_list = [x for x in sin_text_temp_list if x not in unwanted_symbols]
 		print("original is: ", sin_text_temp_list)
-		print("unwanted symbols removed list is ", l3)
-		sin_text = "".join(l3)
+		print("unwanted symbols removed list is ", sin_text_list)
+		sin_text = "".join(sin_text_list)
 		print("unwanted symbols removed sin_text is ", sin_text)
 
 
-		#process the sinhala uncode string
-		print(type(sin_text))
-		sin_text_list = list(sin_text)
-		print("sinhala text list actually as in unicode :",sin_text_list)
-		print("sinhala text list length", len(sin_text_list))
-
-		# sin_text_len_modified = self.length_modification(sin_text)
-		# print("from length modification :", sin_text_len_modified)
-
 		#call convert_to_phoneme function and get the halfly transliterated string
 		mapped_text_list = self.convert_to_phoneme(sin_text)
-
-
 		print("mapped text list: ",mapped_text_list)
-		print("mapped text list len :", len(mapped_text_list))
+
 
 		a_inserted_list = self.insert_a(sin_text_list, mapped_text_list)
 		print( "a inserted phoneme string:", a_inserted_list);
