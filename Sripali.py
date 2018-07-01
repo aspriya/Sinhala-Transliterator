@@ -73,6 +73,9 @@ class SinhalaTransliterator(Frame):
 		self.singlish.delete(0.0, END)
 		self.singlish.insert(0.0, "".join(singlish_list))
 
+		file = open("address.txt","w")
+		file.write("".join(singlish_list))
+
 
 	def convert_to_phoneme(self, word):
 		word_in_phoneme_list = []
@@ -501,7 +504,6 @@ class SinhalaTransliterator(Frame):
 			if letter == u";":
 				word_in_singlish.append(u':')
 
-		# word_in_phoneme = "".join(word_in_phoneme) #converting to string
 		return word_in_singlish
 
 
